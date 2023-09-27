@@ -138,7 +138,7 @@ data "aws_iam_policy_document" "this" {
     sid       = "DecryptSecrets"
     effect    = "Allow"
     actions   = ["kms:Decrypt"]
-    resources = distinct([for secret in var.secrets : secret.kms_key_id])
+    resources = distinct([for secret in var.secrets : secret.arn])
     condition {
       test     = "StringEquals"
       variable = "kms:ViaService"
